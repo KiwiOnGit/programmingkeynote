@@ -1,11 +1,23 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fuller 2026, Programming for Teens!</title>
+    <title>Fuller 2026: The Power of Creation</title>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        /* 1. RESET & FULL-SCREEN PROJECTOR THEME */
+        /* 1. RESET & DEEP GLOSSY COSMIC SETUP */
+        :root {
+            --neon-blue: #38bdf8;
+            --neon-indigo: #818cf8;
+            --neon-purple: #c084fc;
+            --glass-bg: rgba(255, 255, 255, 0.04);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --glass-shine: rgba(255, 255, 255, 0.2);
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -16,42 +28,140 @@
         body, html {
             height: 100%;
             width: 100%;
-            background-color: #000000;
-            color: #ffffff;
-            font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, sans-serif;
+            background-color: #02010a;
+            color: #f8fafc;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        /* 16:9 EDGE-TO-EDGE CANVAS WITH LETTERBOXING FOR ALL MONITORS */
+        /* 16:9 MASTER VIEWPORT */
         .stage-wrapper {
             position: relative;
             width: 100vw;
-            height: 56.25vw; /* 16:9 ratio */
-            max-width: 177.78vh; /* Max width based on 16:9 height */
+            height: 56.25vw; /* 16:9 Aspect Ratio */
+            max-width: 177.78vh;
             max-height: 100vh;
-            background: radial-gradient(circle at 50% 25%, #151e2e 0%, #060810 65%, #000000 100%);
-            box-shadow: 0 0 100px rgba(0,0,0,1);
             overflow: hidden;
-            cursor: pointer;
+            box-shadow: 0 50px 120px rgba(0, 0, 0, 0.95);
+            border-radius: 16px;
+            background: #000000;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            z-index: 10;
         }
 
-        /* Ambient ground shadow */
-        .stage-floor-reflection {
+        /* DYNAMIC CROSS-FADING GRADIENT BACKDROP LAYERS */
+        .gradient-backdrop-system {
             position: absolute;
-            bottom: 0;
-            left: 2%;
-            width: 96%;
-            height: 35px;
-            background: radial-gradient(ellipse at center, rgba(26, 36, 54, 0.45) 0%, rgba(0,0,0,0) 70%);
-            filter: blur(5px);
-            pointer-events: none;
-            z-index: 8;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
         }
 
-        /* SLIDE CONTAINER STACKS */
+        .bg-gradient-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+            z-index: 1;
+            background-size: 200% 200%;
+            animation: slowWaveMotion 15s infinite alternate ease-in-out;
+        }
+
+        .bg-gradient-layer.active {
+            opacity: 1;
+            z-index: 2;
+        }
+
+        @keyframes slowWaveMotion {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        /* Rich individual slide gradients mapped to theme types */
+        .grad-slide-0 { background-image: linear-gradient(135deg, #090514 0%, #120a24 30%, #2e1065 70%, #581c87 100%); }
+        .grad-slide-1 { background-image: linear-gradient(135deg, #0d0600 0%, #271000 30%, #451a03 70%, #7c2d12 100%); }
+        .grad-slide-2 { background-image: linear-gradient(135deg, #01130e 0%, #022c22 30%, #064e3b 70%, #0f766e 100%); }
+        .grad-slide-3 { background-image: linear-gradient(135deg, #020813 0%, #07162c 30%, #1e3a8a 70%, #3b82f6 100%); }
+        .grad-slide-4 { background-image: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #ec4899 100%); }
+        .grad-slide-5 { background-image: linear-gradient(135deg, #060312 0%, #0f0a2a 30%, #311084 70%, #4f46e5 100%); }
+        .grad-slide-6 { background-image: linear-gradient(135deg, #100202 0%, #2a0808 30%, #450a0a 70%, #991b1b 100%); }
+        .grad-slide-7 { background-image: linear-gradient(135deg, #01161e 0%, #022d42 30%, #005f73 70%, #0a9396 100%); }
+        .grad-slide-8 { background-image: linear-gradient(135deg, #1e3a8a 0%, #0d9488 100%); }
+        .grad-slide-9 { background-image: linear-gradient(135deg, #030712 0%, #111827 50%, #1f2937 100%); }
+        .grad-slide-10 { background-image: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 45%, #ec4899 75%, #f43f5e 100%); }
+
+        /* Gentle ambient float sheen over the gradients */
+        .ambient-radial-glow {
+            position: absolute;
+            width: 50vw;
+            height: 50vw;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, rgba(0,0,0,0) 70%);
+            pointer-events: none;
+            z-index: 3;
+            mix-blend-mode: overlay;
+            animation: driftGlow 25s infinite alternate ease-in-out;
+        }
+
+        @keyframes driftGlow {
+            0% { transform: translate(-10%, -10%) scale(1); }
+            100% { transform: translate(20%, 10%) scale(1.15); }
+        }
+
+        #particle-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        /* 2. ULTIMATE GLOSSY GLASSMORPHIC CARDS */
+        .glass-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-top: 1.5px solid rgba(255, 255, 255, 0.25);
+            border-left: 1.5px solid rgba(255, 255, 255, 0.2);
+            border-radius: 28px;
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            box-shadow: 0 35px 70px rgba(0, 0, 0, 0.45), 
+                        inset 0 1px 1px rgba(255, 255, 255, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Glass highlight sweep shine */
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .glass-card:hover::before {
+            left: 150%;
+        }
+
+        /* 3. HARDWARE-ACCELERATED KINETIC SLIDE TRANSITIONS */
         .slide {
             position: absolute;
             top: 0;
@@ -60,159 +170,252 @@
             height: 100%;
             display: flex;
             flex-direction: column;
-            padding: 5% 8%;
+            padding: 6% 10%;
             opacity: 0;
             visibility: hidden;
-            transform: scale(0.995);
-            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-            z-index: 1;
+            transform: scale(0.96) translate3d(0, 35px, 0);
+            filter: blur(10px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                        filter 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        visibility 0.8s;
+            z-index: 10;
         }
 
         .slide.active {
             opacity: 1;
             visibility: visible;
-            transform: scale(1);
-            z-index: 5;
+            transform: scale(1) translate3d(0, 0, 0);
+            filter: blur(0px);
         }
 
-        /* KEYNOTE TYPOGRAPHY SYSTEM */
-        .slide-title {
-            font-size: 3.2vw;
-            font-weight: 500;
-            letter-spacing: -1.5px;
-            color: #ffffff;
-            text-shadow: 0 3px 8px rgba(0,0,0,0.85);
-            margin-bottom: 2.5vw;
-        }
-
-        .text-body {
-            font-size: 2vw;
-            font-weight: 400;
-            line-height: 1.5;
-            color: #cbd5e1;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.8);
-        }
-
+        /* CHRONOLOGICAL BUILDING REVEALS */
         .build-item {
             opacity: 0;
-            transform: translateY(15px);
-            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+            transform: translate3d(0, 25px, 0);
+            filter: blur(5px);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                        filter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .build-item.revealed {
             opacity: 1;
-            transform: translateY(0);
+            transform: translate3d(0, 0, 0);
+            filter: blur(0px);
         }
 
-        /* PREMIUM SKEUOMORPHIC ICONS */
-        .skeuo-glossy-box {
-            position: relative;
-            width: 11vw;
-            height: 11vw;
-            border-radius: 24%;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.9), 
-                        inset 0 3px 5px rgba(255,255,255,0.45),
-                        inset 0 -4px 8px rgba(0,0,0,0.7);
-            border: 1px solid #141824;
+        /* TYPOGRAPHY */
+        .slide-title {
+            font-size: 3.5vw;
+            font-weight: 800;
+            letter-spacing: -2px;
+            color: #ffffff;
+            margin-bottom: 2.2vw;
+            line-height: 1.1;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            background: linear-gradient(135deg, #ffffff 60%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-body {
+            font-size: 2.1vw;
+            font-weight: 400;
+            line-height: 1.6;
+            color: #f1f5f9;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+        }
+
+        /* SKEUOMORPHIC HIGH-GLOSS CONCEPT PILLARS */
+        .ripped-cards-container {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        .skeuo-glossy-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
+            justify-content: space-around;
             width: 100%;
-            height: 50%;
-            background: linear-gradient(180deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.05) 100%);
-            border-radius: 28px 28px 0 0;
-            z-index: 3;
-            pointer-events: none;
+            gap: 3vw;
+            margin-top: 1.5vw;
         }
 
-        .skeuo-glossy-box::after {
-            content: '';
-            position: absolute;
-            top: -20%;
-            left: -20%;
-            width: 140%;
-            height: 140%;
-            background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 50%);
-            transform: rotate(-12deg);
-            z-index: 4;
-            pointer-events: none;
-        }
-
-        .skeuo-reflection {
-            transform: scaleY(-0.35) translateY(12px);
-            opacity: 0.15;
-            filter: blur(1.5px);
-            pointer-events: none;
-            margin-top: -15px;
-        }
-
-        .icon-row {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 4vw;
-            margin-top: 2vw;
-            flex-wrap: wrap;
-        }
-
-        .skeuo-icon-unit {
+        .concept-card {
+            width: 25vw;
+            height: 23vw;
+            padding: 2.5vw 2vw;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
-            gap: 0.9vw;
-            width: 14vw;
-            flex: 0 0 auto;
-        }
-
-        .icon-text-label {
-            font-size: 1.15vw;
-            font-weight: 700;
-            color: #cbd5e1;
+            justify-content: center;
+            gap: 1.5vw;
             text-align: center;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.85);
-            white-space: nowrap;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.5s, box-shadow 0.5s;
         }
 
-        /* SKEUOMORPHIC PASSIVE SCREENS (SLIDE 2) - NO EMOJIS */
-        .consumption-standoff {
+        .concept-card:hover {
+            transform: translateY(-12px) scale(1.04);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5), 
+                        0 0 35px rgba(255, 255, 255, 0.15);
+        }
+
+        .concept-icon-ring {
+            width: 6vw;
+            height: 6vw;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.02) 100%);
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3),
+                        inset 0 2px 4px rgba(255, 255, 255, 0.3);
+            transition: transform 0.5s ease;
+        }
+
+        .concept-card:hover .concept-icon-ring {
+            transform: scale(1.1) rotate(5deg);
+            border-color: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .concept-icon-ring svg, .concept-icon-ring i {
+            width: 3vw;
+            height: 3vw;
+        }
+
+        .concept-card-title {
+            font-size: 1.8vw;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+
+        .concept-card-desc {
+            font-size: 1.25vw;
+            color: #cbd5e1;
+            line-height: 1.5;
+        }
+
+        /* CONVERGENCE CONSOLE CAROUSEL */
+        .carousel-view {
+            position: relative;
+            width: 100%;
+            height: 18vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2vw;
+        }
+
+        .carousel-icon {
+            position: absolute;
+            top: 50%;
+            width: 12vw;
+            height: 12vw;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.9);
+            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0;
+            transform: translate3d(-50%, -50%, 0) scale(0.2);
+            z-index: 5;
+            color: #ffffff;
+        }
+
+        .carousel-icon svg, .carousel-icon i {
+            width: 4.5vw;
+            height: 4.5vw;
+        }
+
+        .carousel-icon.c-left {
+            left: 20%;
+            opacity: 0.4;
+            transform: translate3d(-50%, -50%, 0) scale(0.8);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .carousel-icon.c-center {
+            left: 50%;
+            opacity: 1;
+            transform: translate3d(-50%, -50%, 0) scale(1.2);
+            box-shadow: 0 35px 70px rgba(0,0,0,0.95), 0 0 45px rgba(255, 255, 255, 0.2);
+            z-index: 30;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+        }
+
+        .carousel-icon.c-right {
+            left: 80%;
+            opacity: 0.4;
+            transform: translate3d(-50%, -50%, 0) scale(0.8);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .carousel-icon.c-merged {
+            left: 50%;
+            opacity: 0.95;
+            transform: translate3d(-50%, -50%, 0) scale(1.35);
+            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+            box-shadow: 0 0 120px rgba(255, 255, 255, 0.85);
+            color: #02010a;
+            animation: convergencePulse 2.5s infinite alternate ease-in-out;
+        }
+
+        @keyframes convergencePulse {
+            0% { transform: translate3d(-50%, -50%, 0) scale(1.3); filter: brightness(1.1) drop-shadow(0 0 30px rgba(255, 255, 255, 0.4)); }
+            100% { transform: translate3d(-50%, -50%, 0) scale(1.4); filter: brightness(1.3) drop-shadow(0 0 60px rgba(255, 255, 255, 0.7)); }
+        }
+
+        .convergence-text-area {
+            width: 100%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        /* PASSIVE MONITORS */
+        .passive-standoff {
             display: flex;
             justify-content: center;
             align-items: flex-end;
             gap: 2vw;
             width: 100%;
-            margin-top: 1.5vw;
         }
 
         .passive-screen {
             width: 9.5vw;
             height: 14vw;
-            background: linear-gradient(180deg, #2b313e 0%, #12151c 50%, #06080b 100%);
-            border-radius: 1vw;
-            border: 2px solid #4d566b;
-            box-shadow: 0 12px 26px rgba(0,0,0,0.85), inset 0 1px 2px rgba(255,255,255,0.25);
-            padding: 0.7vw;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+            border-radius: 1.2vw;
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5), inset 0 1px 2px rgba(255,255,255,0.2);
+            padding: 0.8vw;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .passive-screen:hover {
+            transform: translateY(-15px) scale(1.05) rotate(2deg);
+            border-color: #f87171;
+            box-shadow: 0 25px 45px rgba(248, 113, 113, 0.25);
         }
 
         .passive-content-box {
             width: 100%;
             height: 8.5vw;
-            background-color: #040507;
-            border: 1.5px solid #1a1e27;
+            background-color: #020617;
+            border: 1.5px solid #1e293b;
             border-radius: 6px;
             display: flex;
             flex-direction: column;
@@ -232,228 +435,70 @@
             height: 100%;
             background: linear-gradient(115deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 45%);
             transform: skewX(-20deg);
+            animation: passiveScan 5s infinite linear;
+        }
+
+        @keyframes passiveScan {
+            0% { left: -150%; }
+            100% { left: 150%; }
         }
 
         .passive-label {
             color: #94a3b8;
-            font-size: 0.75vw;
+            font-size: 0.8vw;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.6px;
-            text-align: center;
+            letter-spacing: 1px;
         }
 
-        .feed-graphics {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5vw;
-        }
-        .feed-item-line {
+        /* 3D FLOATING DEVICE */
+        .perspective-frame {
+            perspective: 1000px;
             display: flex;
             align-items: center;
-            gap: 0.3vw;
-        }
-        .feed-avatar {
-            width: 1.1vw;
-            height: 1.1vw;
-            border-radius: 50%;
-            background: #2563eb;
-        }
-        .feed-bar-text {
-            height: 0.4vw;
-            background: #334155;
-            border-radius: 1px;
-            flex-grow: 1;
-        }
-        .feed-bar-text.short { width: 55%; flex-grow: 0; }
-
-        .gamepad-graphic {
-            width: 2.8vw;
-            height: 1.8vw;
-            border-radius: 8px;
-            background: #475569;
-            border: 1.5px solid #64748b;
-            position: relative;
-            margin: auto 0;
-        }
-        .gamepad-dpad {
-            position: absolute;
-            left: 0.4vw;
-            top: 0.6vw;
-            width: 0.6vw;
-            height: 0.6vw;
-            background: #1e293b;
-        }
-        .gamepad-dpad::before {
-            content: '';
-            position: absolute;
-            left: -0.2vw;
-            top: 0.2vw;
-            width: 1vw;
-            height: 0.2vw;
-            background: #1e293b;
-        }
-        .gamepad-button {
-            position: absolute;
-            right: 0.4vw;
-            top: 0.6vw;
-            width: 0.6vw;
-            height: 0.6vw;
-            border-radius: 50%;
-            background: #ef4444;
-        }
-
-        .video-graphic {
+            justify-content: center;
             width: 100%;
             height: 100%;
+        }
+
+        .floating-angled-device {
+            transform: rotateY(-22deg) rotateX(15deg) rotateZ(-3deg);
+            width: 25vw;
+            height: 17vw;
+            background: linear-gradient(135deg, #090b11 0%, #1e293b 50%, #030712 100%);
+            border-radius: 1.5vw;
+            border: 4px solid #111827;
+            outline: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: -35px 35px 70px rgba(0,0,0,0.95), inset 0 2px 4px rgba(255,255,255,0.3);
+            padding: 1vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            animation: floatSystem 4.5s infinite ease-in-out;
+            transform-style: preserve-3d;
+        }
+
+        @keyframes floatSystem {
+            0%, 100% { transform: rotateY(-22deg) rotateX(15deg) rotateZ(-3deg) translate3d(0, 0, 0); }
+            50% { transform: rotateY(-18deg) rotateX(12deg) rotateZ(-1deg) translate3d(0, -15px, 0); }
+        }
+
+        .touch-display {
+            width: 100%;
+            flex-grow: 1;
+            background: #020617;
+            border: 1.5px solid #334155;
+            border-radius: 10px;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            align-items: center;
-        }
-        .video-play-btn {
-            width: 0;
-            height: 0;
-            border-top: 0.6vw solid transparent;
-            border-left: 1vw solid #ef4444;
-            border-bottom: 0.6vw solid transparent;
-            margin-top: 1.2vw;
-        }
-        .video-scrub-bar {
-            width: 100%;
-            height: 0.3vw;
-            background: #334155;
-            border-radius: 1px;
-        }
-        .video-progress {
-            width: 60%;
-            height: 100%;
-            background: #ef4444;
+            padding: 1vw;
+            background-image: linear-gradient(0deg, rgba(99, 102, 241, 0.1) 0%, transparent 100%);
         }
 
-        .chat-bubble-graphic {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5vw;
-            margin-top: 0.5vw;
-        }
-        .bubble-item {
-            width: 75%;
-            height: 1.2vw;
-            border-radius: 6px 6px 6px 0;
-            background: #334155;
-        }
-        .bubble-item.self {
-            align-self: flex-end;
-            background: #22c55e;
-            border-radius: 6px 6px 0 6px;
-        }
-
-        .spotlight-cone {
-            position: absolute;
-            top: -20%;
-            left: 35%;
-            width: 30%;
-            height: 120%;
-            background: conic-gradient(from 150deg at 50% 0%, rgba(255, 255, 255, 0.12) 0deg, rgba(255,255,255,0) 60deg);
-            filter: blur(15px);
-            opacity: 0;
-            z-index: 2;
-            pointer-events: none;
-            transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        .spotlight-cone.active {
-            opacity: 1;
-        }
-
-        .carousel-view {
-            position: relative;
-            width: 100%;
-            height: 20vw;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 1vw;
-        }
-
-        .carousel-icon {
-            position: absolute;
-            top: 50%;
-            width: 11vw;
-            height: 11vw;
-            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-            opacity: 0;
-            transform: translate(-50%, -50%) scale(0.25);
-            pointer-events: none;
-            z-index: 5;
-            border-radius: 24%;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.82), inset 0 3px 5px rgba(255,255,255,0.42), inset 0 -4px 8px rgba(0,0,0,0.62);
-            will-change: transform, opacity, left;
-            overflow: hidden;
-        }
-
-        .carousel-icon svg {
-            width: 80px !important;
-            height: 80px !important;
-            display: block;
-        }
-
-        .carousel-icon.c-left {
-            left: 24%;
-            opacity: 0.38;
-            transform: translate(-50%, -50%) scale(0.84);
-            filter: none;
-        }
-
-        .carousel-icon.c-center {
-            left: 50%;
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1.18);
-            filter: none;
-            box-shadow: 0 28px 58px rgba(0,0,0,0.95), 0 0 34px rgba(143, 162, 196, 0.35), inset 0 3px 5px rgba(255,255,255,0.42), inset 0 -4px 8px rgba(0,0,0,0.5);
-            z-index: 30;
-        }
-
-        .carousel-icon.c-right {
-            left: 76%;
-            opacity: 0.38;
-            transform: translate(-50%, -50%) scale(0.84);
-            filter: none;
-        }
-
-        .carousel-icon.c-merged {
-            left: 50%;
-            opacity: 0;
-            transform: translate(-50%, -50%) scale(0);
-            filter: blur(10px);
-            transition: all 0.9s cubic-bezier(0.76, 0, 0.24, 1);
-        }
-
-        .convergence-text-area {
-            width: 100%;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            margin-top: 0.2vw;
-        }
-
-        .slide-4-reveal {
-            opacity: 0;
-            transform: translateY(14px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .slide-4-reveal.revealed {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
+        /* DYNAMIC CYLINDER GRAPHICS */
         .cylinder-graph-stage {
             display: flex;
             justify-content: space-around;
@@ -469,459 +514,809 @@
             flex-direction: column;
             align-items: center;
             gap: 1vw;
-            width: 8vw;
+            width: 10vw;
         }
 
         .cylinder-wireframe {
             position: relative;
-            width: 4.5vw;
-            height: 13vw;
+            width: 5.5vw;
+            height: 14vw;
             display: flex;
             align-items: flex-end;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 1vw;
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
         }
 
         .cylinder-column-bar {
             position: relative;
             width: 100%;
             height: 0%;
-            background: linear-gradient(90deg, #1b3557 0%, #3168b5 45%, #508ee3 60%, #122640 100%);
-            border-radius: 0 0 8px 8px;
-            box-shadow: inset 0 -4px 10px rgba(0,0,0,0.5);
-            transition: height 1s cubic-bezier(0.19, 1, 0.22, 1);
+            background: linear-gradient(90deg, #1e3a8a 0%, #3b82f6 45%, #60a5fa 60%, #172554 100%);
+            border-radius: 0 0 12px 12px;
+            box-shadow: inset 0 -5px 15px rgba(0,0,0,0.6);
+            transition: height 1.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .cylinder-column-bar::before {
             content: '';
             position: absolute;
-            top: -0.6vw;
+            top: -0.8vw;
             left: 0;
             width: 100%;
-            height: 1.2vw;
-            background: radial-gradient(ellipse at center, #7bb0f5 0%, #2563eb 70%, #172554 100%);
+            height: 1.6vw;
+            background: radial-gradient(ellipse at center, #93c5fd 0%, #3b82f6 70%, #1e3a8a 100%);
             border-radius: 50%;
-            box-shadow: inset 0 1.5px 2px rgba(255,255,255,0.55);
+            box-shadow: inset 0 2px 3px rgba(255,255,255,0.6);
         }
 
         .cylinder-column-bar.cyl-highlight-green {
-            background: linear-gradient(90deg, #124d1a 0%, #249d34 45%, #4ade80 60%, #0a290e 100%);
+            background: linear-gradient(90deg, #064e3b 0%, #10b981 45%, #34d399 60%, #064e3b 100%);
         }
 
         .cylinder-column-bar.cyl-highlight-green::before {
-            background: radial-gradient(ellipse at center, #6ee7b7 0%, #16a34a 70%, #14532d 100%);
+            background: radial-gradient(ellipse at center, #a7f3d0 0%, #10b981 70%, #064e3b 100%);
         }
 
         .cylinder-numerical {
             color: #fbbf24;
-            font-size: 1.5vw;
-            font-weight: 700;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-            margin-bottom: -0.3vw;
+            font-size: 1.8vw;
+            font-weight: 800;
+            text-shadow: 0 3px 6px rgba(0,0,0,0.9);
+            position: absolute;
+            top: -3vw;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.6s ease 1.2s;
+        }
+
+        .active .cylinder-column-bar[style*="height"] .cylinder-numerical {
+            opacity: 1;
         }
 
         .cylinder-text-desc {
-            color: #cbd5e1;
+            color: #e2e8f0;
+            font-weight: 700;
             font-size: 1.1vw;
-            font-weight: 600;
-            text-align: center;
         }
 
-        .specs-grid-split {
-            display: grid;
-            grid-template-columns: 1.15fr 0.85fr;
-            gap: 4vw;
-            height: 80%;
-            align-items: center;
-        }
-
-        .specs-bullets-container {
-            list-style: none;
+        /* PRESENTMENT UTILITIES */
+        .presenter-shell {
             display: flex;
-            flex-direction: column;
-            gap: 1.5vw;
+            width: 100vw;
+            height: 100vh;
+            background-color: #02010a;
+            padding: 20px;
+            gap: 20px;
         }
 
-        .specs-bullets-container li {
-            font-size: 1.9vw;
-            font-weight: 500;
-            line-height: 1.4;
-            color: #ffffff;
-            padding-left: 2.2vw;
-            position: relative;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.85);
-        }
-
-        .specs-bullets-container li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: #8da2c4;
-            font-size: 2.5vw;
-            top: -0.3vw;
-        }
-
-        .perspective-frame {
-            perspective: 800px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 100%;
-        }
-
-        .floating-angled-device {
-            transform: rotateY(-18deg) rotateX(12deg) rotateZ(-2deg);
-            width: 22vw;
-            height: 15vw;
-            background: linear-gradient(135deg, #0a0a0c 0%, #26292e 50%, #000 100%);
-            border-radius: 1.2vw;
-            border: 3.5px solid #181b21;
-            outline: 1.5px solid #4a5463;
-            box-shadow: -20px 20px 40px rgba(0,0,0,0.9), inset 0 1.5px 3px rgba(255,255,255,0.25);
-            padding: 0.8vw;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .floating-angled-device .touch-display {
-            width: 100%;
+        .stage-box {
             flex-grow: 1;
-            background: #000;
-            border: 1.5px solid #11141a;
-            border-radius: 6px;
-            overflow: hidden;
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 1vw;
-            background-image: linear-gradient(0deg, rgba(34, 197, 94, 0.08) 0%, transparent 100%);
-        }
-
-        .layout-center {
-            display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
+            position: relative;
+        }
+
+        /* SPEAKER DRAWER PANEL - DUAL SCREEN CAPABILITY */
+        .speaker-drawer {
+            width: 360px;
+            background: rgba(10, 11, 18, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            color: #e2e8f0;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+            overflow: hidden;
+            z-index: 2000;
+        }
+
+        .speaker-header {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        .speaker-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #a5b4fc;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .timer-badge {
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            color: #a5b4fc;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .speaker-content {
+            padding: 24px;
+            overflow-y: auto;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .notes-section {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 16px;
+        }
+
+        .notes-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #64748b;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .notes-text {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #cbd5e1;
+        }
+
+        .pacing-bar {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .pacing-progress {
             height: 100%;
-            text-align: center;
+            background: #818cf8;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .speaker-actions {
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: rgba(0,0,0,0.2);
+        }
+
+        .action-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            flex-grow: 1;
+            padding: 12px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-btn.primary {
+            background: #4f46e5;
+            border-color: #6366f1;
+        }
+
+        .nav-btn.primary:hover {
+            background: #5a52e9;
+        }
+
+        .companion-toggle {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #0f172a;
+            padding: 10px 18px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            z-index: 2001;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .companion-toggle:hover {
+            background: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        /* PROJECTOR MODE OVERRIDES (TV screen) */
+        body.projector-mode .speaker-drawer {
+            display: none !important;
+        }
+
+        body.projector-mode .presenter-shell {
+            padding: 0 !important;
+            background: #000000;
+        }
+
+        body.projector-mode .stage-wrapper {
+            border-radius: 0;
+            border: none;
+            width: 100vw;
+            height: 56.25vw;
+            max-width: 100%;
+            max-height: 100vh;
         }
     </style>
 </head>
-<body>
+<body class="presenter-shell-active">
 
-    <div class="stage-wrapper" id="stage" onclick="window.onStageClick()">
+    <!-- PRESENTATION CONTAINER SHELL -->
+    <div class="presenter-shell">
         
-        <div class="slide active" id="slide-0" data-total-builds="1">
-            <div class="spotlight-cone" id="intro-spotlight"></div>
-            
-            <div class="layout-center" style="margin-top: 5%;">
-                <h1 style="font-size: 4.8vw; font-weight: 700; letter-spacing: -2px; margin-bottom: 2vw; text-shadow: 0 4px 10px rgba(0,0,0,0.85);">Every once in a while,</h1>
-                <h1 class="build-item" id="slide-0-b1" style="font-size: 3.5vw; font-weight: 600; color: #8da2c4; letter-spacing: -1px; text-shadow: 0 3px 8px rgba(0,0,0,0.85);">a revolutionary skill comes along...</h1>
-            </div>
-        </div>
-
-        <div class="slide" id="slide-1" data-total-builds="2">
-            <h2 class="slide-title">The Passive Mindset</h2>
-            <div class="specs-grid-split">
-                <div>
-                    <p class="text-body build-item" id="slide-1-b1" style="margin-bottom: 2.5vw;">
-                        Today's teenagers are entirely surrounded by technology.
-                    </p>
-                    <p class="text-body build-item" id="slide-1-b2" style="color: #8da2c4; font-weight: 600;">
-                        Yet they are locked into interacting with it purely as passive, screen-bound consumers.
-                    </p>
+        <div class="stage-box">
+            <div class="stage-wrapper" id="stage" onclick="window.onStageClick()">
+                
+                <!-- MORPHING GRADIENT BACKDROP LAYERS (User Ref Dynamic Gradients) -->
+                <div class="gradient-backdrop-system">
+                    <div class="bg-gradient-layer grad-slide-0 active" id="bg-layer-0"></div>
+                    <div class="bg-gradient-layer grad-slide-1" id="bg-layer-1"></div>
+                    <div class="bg-gradient-layer grad-slide-2" id="bg-layer-2"></div>
+                    <div class="bg-gradient-layer grad-slide-3" id="bg-layer-3"></div>
+                    <div class="bg-gradient-layer grad-slide-4" id="bg-layer-4"></div>
+                    <div class="bg-gradient-layer grad-slide-5" id="bg-layer-5"></div>
+                    <div class="bg-gradient-layer grad-slide-6" id="bg-layer-6"></div>
+                    <div class="bg-gradient-layer grad-slide-7" id="bg-layer-7"></div>
+                    <div class="bg-gradient-layer grad-slide-8" id="bg-layer-8"></div>
+                    <div class="bg-gradient-layer grad-slide-9" id="bg-layer-9"></div>
+                    <div class="bg-gradient-layer grad-slide-10" id="bg-layer-10"></div>
                 </div>
-                <div class="consumption-standoff">
-                    <div class="passive-screen">
-                        <div class="passive-content-box">
-                            <div class="feed-graphics">
-                                <div class="feed-item-line">
-                                    <div class="feed-avatar"></div>
-                                    <div class="feed-bar-text"></div>
+
+                <!-- High-gloss overlay glow and Particle Engine -->
+                <div class="ambient-radial-glow"></div>
+                <canvas id="particle-canvas"></canvas>
+
+                <!-- SLIDE 0: HOOK SLIDE -->
+                <div class="slide active" id="slide-0" data-total-builds="1">
+                    <div class="layout-center" style="margin-top: 5%;">
+                        <h1 style="font-size: 5vw; font-weight: 800; letter-spacing: -3px; margin-bottom: 2vw; text-shadow: 0 4px 20px rgba(0,0,0,0.85); line-height: 1.1;">Every once in a while,</h1>
+                        <h1 class="build-item" id="slide-0-b1" style="font-size: 3.6vw; font-weight: 700; color: #cbd5e1; letter-spacing: -1.5px; text-shadow: 0 3px 10px rgba(0,0,0,0.8);">a revolutionary skill comes along...</h1>
+                    </div>
+                </div>
+
+                <!-- SLIDE 1: PILLAR 1 - THE LOGIC ENGINE -->
+                <div class="slide" id="slide-1" data-total-builds="4">
+                    <h2 class="slide-title">1. The Logic Engine</h2>
+                    <div class="specs-grid-split">
+                        <div class="ripped-cards-container">
+                            <div class="concept-card glass-card">
+                                <div class="concept-icon-ring">
+                                    <i data-lucide="cpu"></i>
                                 </div>
-                                <div class="feed-bar-text short"></div>
-                                <div class="feed-item-line" style="margin-top: 0.5vw;">
-                                    <div class="feed-avatar" style="background:#a855f7;"></div>
-                                    <div class="feed-bar-text"></div>
+                                <h3 class="concept-card-title">Structured Logic</h3>
+                                <p class="concept-card-desc">Breaking down complex challenges systematically into clear, actionable guidelines.</p>
+                            </div>
+                        </div>
+                        <div>
+                            <ul class="specs-bullets-container">
+                                <li class="build-item" id="slide-1-b1">Think like a master strategist</li>
+                                <li class="build-item" id="slide-1-b2">Learn to break scary, massive hurdles down into tiny, easy tasks</li>
+                                <li class="build-item" id="slide-1-b3">Comparable to writing a flawless recipe for baking a perfect cake</li>
+                                <li class="build-item" id="slide-1-b4">A mental superpower that makes analytical reasoning feel like play</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 2: PILLAR 2 - THE CREATIVE CANVAS -->
+                <div class="slide" id="slide-2" data-total-builds="4">
+                    <h2 class="slide-title">2. The Creative Canvas</h2>
+                    <div class="specs-grid-split">
+                        <div class="ripped-cards-container">
+                            <div class="concept-card glass-card">
+                                <div class="concept-icon-ring">
+                                    <i data-lucide="palette"></i>
+                                </div>
+                                <h3 class="concept-card-title">Pure Canvas</h3>
+                                <p class="concept-card-desc">Transforming empty screen space into working games, apps, and kinetic artwork.</p>
+                            </div>
+                        </div>
+                        <div>
+                            <ul class="specs-bullets-container">
+                                <li class="build-item" id="slide-2-b1">A paint brush that moves, thinks, and reacts</li>
+                                <li class="build-item" id="slide-2-b2">Bring your imagination to life on an interactive surface</li>
+                                <li class="build-item" id="slide-2-b3">Build custom arcade games, creative tools, and useful software</li>
+                                <li class="build-item" id="slide-2-b4">The critical step to stop consuming others' tech, and build your own</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 3: PILLAR 3 - THE CAREER PASSPORT -->
+                <div class="slide" id="slide-3" data-total-builds="4">
+                    <h2 class="slide-title">3. The Career Passport</h2>
+                    <div class="specs-grid-split">
+                        <div class="ripped-cards-container">
+                            <div class="concept-card glass-card">
+                                <div class="concept-icon-ring">
+                                    <i data-lucide="globe"></i>
+                                </div>
+                                <h3 class="concept-card-title">Global Mobility</h3>
+                                <p class="concept-card-desc">The ultimate, borderless literacy card to navigate and lead the future economy.</p>
+                            </div>
+                        </div>
+                        <div>
+                            <ul class="specs-bullets-container">
+                                <li class="build-item" id="slide-3-b1">A passport to travel and work from anywhere</li>
+                                <li class="build-item" id="slide-3-b2">Every single business, hospital, and space rocket runs on software</li>
+                                <li class="build-item" id="slide-3-b3">Launch your own company directly from your tablet with $0 cost</li>
+                                <li class="build-item" id="slide-3-b4">The single most future-proof career opportunity on Earth</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 4: THE INTEGRATED REVEAL (VIBRANT CONVERGENCE) -->
+                <div class="slide" id="slide-4" data-total-builds="11">
+                    <div class="carousel-view">
+                        <div class="skeuo-glossy-box carousel-icon" id="c-icon-1">
+                            <i data-lucide="cpu"></i>
+                        </div>
+                        <div class="skeuo-glossy-box carousel-icon" id="c-icon-2">
+                            <i data-lucide="palette"></i>
+                        </div>
+                        <div class="skeuo-glossy-box carousel-icon" id="c-icon-3">
+                            <i data-lucide="globe"></i>
+                        </div>
+                    </div>
+
+                    <div class="convergence-text-area">
+                        <h1 class="build-item" id="slide-4-b1" style="font-size: 2.2vw; font-weight: 700; text-shadow: 0 4px 10px rgba(0,0,0,0.8); line-height: 1.2; margin-bottom: 0.5vw; color: white;">1. Step-by-step thinking...</h1>
+                        <h1 class="build-item" id="slide-4-b2" style="font-size: 2.2vw; font-weight: 700; color: #a7f3d0; text-shadow: 0 4px 10px rgba(0,0,0,0.8); line-height: 1.2; margin-bottom: 0.5vw;">2. Building your own ideas...</h1>
+                        <h1 class="build-item" id="slide-4-b3" style="font-size: 2.2vw; font-weight: 700; color: #93c5fd; text-shadow: 0 4px 10px rgba(0,0,0,0.8); line-height: 1.2; margin-bottom: 0.5vw;">3. A passport to the future...</h1>
+
+                        <h2 class="build-item" id="slide-4-b10" style="font-size: 1.8vw; color: #fbbf24; font-weight: 600; margin-top: 1.5vw; text-shadow: 0 3px 8px rgba(0,0,0,0.85);">
+                            These three separate powers are actually one single, revolutionary capability:
+                        </h2>
+
+                        <div class="build-item" id="slide-4-b11" style="margin-top: 1vw;">
+                            <h1 style="font-size: 5.5vw; font-weight: 900; letter-spacing: -3px; background: linear-gradient(180deg, #ffffff 40%, #cbd5e1 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 6px 15px rgba(0,0,0,0.95));">Programming.</h1>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 5: WHAT IS PROGRAMMING -->
+                <div class="slide" id="slide-5" data-total-builds="2">
+                    <h2 class="slide-title">What is Programming?</h2>
+                    <div class="specs-grid-split">
+                        <div>
+                            <p class="text-body build-item" id="slide-5-b1" style="font-size: 2.4vw; line-height: 1.4; color: #f8fafc; margin-bottom: 2vw;">
+                                "Programming is the act of instructing a computer machine to perform complex tasks through structured, logical frameworks."
+                            </p>
+                            <p class="text-body build-item" id="slide-5-b2" style="color: #cbd5e1; font-weight: 700;">
+                                It is the definitive transition from being a passive consumer to an active digital architect.
+                            </p>
+                        </div>
+                        <div class="layout-center">
+                            <div class="glass-card" style="padding: 3vw; display: flex; flex-direction: column; gap: 1vw; align-items: center; box-shadow: 0 30px 60px rgba(0,0,0,0.5);">
+                                <i data-lucide="terminal" style="width: 5vw; height: 5vw; color: #ffffff;"></i>
+                                <span style="font-size: 1.4vw; font-weight: 800; color: #ffffff;">Active Builder Mindset</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 6: THE PASSIVE TRAP -->
+                <div class="slide" id="slide-6" data-total-builds="2">
+                    <h2 class="slide-title">The Passive Trap</h2>
+                    <div class="specs-grid-split">
+                        <div>
+                            <p class="text-body build-item" id="slide-6-b1" style="margin-bottom: 2.5vw;">
+                                Right now, teenagers spend up to 7 hours every single day looking at screens.
+                            </p>
+                            <p class="text-body build-item" id="slide-6-b2" style="color: #f87171; font-weight: 700;">
+                                But they are completely trapped on the outside—only watching other people's videos, playing other people's games, and scrolling feeds.
+                            </p>
+                        </div>
+                        <div class="passive-standoff">
+                            <div class="passive-screen">
+                                <div class="passive-content-box">
+                                    <div class="feed-graphics">
+                                        <div class="feed-item-line">
+                                            <div class="feed-avatar"></div>
+                                            <div class="feed-bar-text"></div>
+                                        </div>
+                                        <div class="feed-bar-text short"></div>
+                                    </div>
+                                </div>
+                                <div class="passive-label">Feeds</div>
+                            </div>
+                            <div class="passive-screen">
+                                <div class="passive-content-box" style="justify-content: center;">
+                                    <div class="gamepad-graphic">
+                                        <div class="gamepad-dpad"></div>
+                                        <div class="gamepad-button"></div>
+                                    </div>
+                                </div>
+                                <div class="passive-label">Games</div>
+                            </div>
+                            <div class="passive-screen">
+                                <div class="passive-content-box" style="justify-content: center;">
+                                    <div class="video-graphic">
+                                        <div class="video-play-btn"></div>
+                                        <div class="video-scrub-bar">
+                                            <div class="video-progress"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="passive-label">Streams</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 7: TAKING BACK CONTROL -->
+                <div class="slide" id="slide-7" data-total-builds="5">
+                    <h2 class="slide-title">Taking Back Control</h2>
+                    <div class="specs-grid-split">
+                        <div class="perspective-frame">
+                            <div class="floating-angled-device">
+                                <div class="touch-display">
+                                    <div style="font-family: monospace; font-size: 0.8vw; color: #a5b4fc; display: flex; flex-direction: column; gap: 4px;">
+                                        <div><span style="color:#f472b6;">const</span> <span style="color:#60a5fa;">creator</span> = {</div>
+                                        <div style="padding-left: 15px;">status: <span style="color:#34d399;">"active"</span>,</div>
+                                        <div style="padding-left: 15px;">mindset: <span style="color:#f59e0b;">"builder"</span></div>
+                                        <div>};</div>
+                                    </div>
+                                    <span style="color: #34d399; font-size: 0.7vw; font-weight: 700; text-align: center; letter-spacing: 1px;">CREATOR STATE: RUNNING</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="passive-label">Feeds</div>
-                    </div>
-                    <div class="passive-screen">
-                        <div class="passive-content-box" style="justify-content: center;">
-                            <div class="gamepad-graphic">
-                                <div class="gamepad-dpad"></div>
-                                <div class="gamepad-button"></div>
-                            </div>
+                        <div>
+                            <ul class="specs-bullets-container">
+                                <li class="build-item" id="slide-7-b1">Shift from basic consumer to computational builder</li>
+                                <li class="build-item" id="slide-7-b2">Look at modern software and realize: "I can construct that!"</li>
+                                <li class="build-item" id="slide-7-b3">Build absolute confidence around systemic digital problems</li>
+                                <li class="build-item" id="slide-7-b4">Turn screen consumption time into active developmental equity</li>
+                                <li class="build-item" id="slide-7-b5">Unlock structural, world-shaping creative potential</li>
+                            </ul>
                         </div>
-                        <div class="passive-label">Games</div>
                     </div>
-                    <div class="passive-screen">
-                        <div class="passive-content-box" style="justify-content: center;">
-                            <div class="video-graphic">
-                                <div class="video-play-btn"></div>
-                                <div class="video-scrub-bar">
-                                    <div class="video-progress"></div>
+                </div>
+
+                <!-- SLIDE 8: METRICS GRAPHS -->
+                <div class="slide" id="slide-8" data-total-builds="2">
+                    <h2 class="slide-title">How Our Brains Learn</h2>
+                    <div class="specs-grid-split">
+                        <div>
+                            <p class="text-body" style="margin-bottom: 20px;">The human brain encodes information far faster when we <strong>actively construct</strong> than when we read textbooks:</p>
+                            <ul class="specs-bullets-container">
+                                <li class="build-item" id="slide-8-b1"><strong>Theoretical Learning:</strong> Passive absorption limits neural connections.</li>
+                                <li class="build-item" id="slide-8-b2"><strong>Computer Science Creation:</strong> Multi-sensory problem-solving boosts mastery.</li>
+                            </ul>
+                        </div>
+                        <div class="cylinder-graph-stage">
+                            <div class="cylinder-set">
+                                <div class="cylinder-wireframe">
+                                    <div class="cylinder-column-bar" id="slide-8-cyl1" style="height: 0%;">
+                                        <div class="cylinder-numerical">1.5x</div>
+                                    </div>
                                 </div>
+                                <div class="cylinder-text-desc">Reading Books</div>
+                            </div>
+                            <div class="cylinder-set">
+                                <div class="cylinder-wireframe">
+                                    <div class="cylinder-column-bar cyl-highlight-green" id="slide-8-cyl2" style="height: 0%;">
+                                        <div class="cylinder-numerical">4.1x</div>
+                                    </div>
+                                </div>
+                                <div class="cylinder-text-desc">Active Building</div>
                             </div>
                         </div>
-                        <div class="passive-label">Streams</div>
                     </div>
-                    <div class="passive-screen">
-                        <div class="passive-content-box" style="justify-content: center;">
-                            <div class="chat-bubble-graphic">
-                                <div class="bubble-item"></div>
-                                <div class="bubble-item self"></div>
+                </div>
+
+                <!-- SLIDE 9: THE ART OF DEBUGGING -->
+                <div class="slide" id="slide-9" data-total-builds="2">
+                    <h2 class="slide-title">Failing is Just a Clue</h2>
+                    <div class="specs-grid-split">
+                        <div>
+                            <p class="text-body build-item" id="slide-9-b1" style="margin-bottom: 20px;">
+                                The greatest gift of programming?
+                            </p>
+                            <p class="text-body build-item highlight-blue" id="slide-9-b2" style="color: #e2e8f0; font-weight: bold;">
+                                It completely redefines mistakes. Failures are no longer permanent defeats—they are active diagnostic roadmaps showing you exactly how to rebuild.
+                            </p>
+                        </div>
+                        <div class="layout-center">
+                            <div class="glass-card" style="padding: 20px; width: 100%; max-width: 320px; display: flex; flex-direction: column; gap: 15px; box-shadow: 0 30px 60px rgba(0,0,0,0.6);">
+                                <div style="display: flex; justify-content: space-between; align-items: center; z-index: 10;">
+                                    <span style="font-size: 0.8vw; color: #94a3b8; font-weight: 700; text-transform: uppercase;">Adventure Engine</span>
+                                    <span id="bug-status" style="background-color: rgba(239,68,68,0.15); color: #ef4444; font-size: 0.75vw; font-weight: 700; padding: 2px 8px; border-radius: 12px;">COMPILE: FAIL</span>
+                                </div>
+                                <div id="bug-code-line" style="font-family: monospace; font-size: 1vw; color: #f87171; border-left: 2px solid #ef4444; padding-left: 8px; min-height: 1.5vw; z-index: 10;">
+                                    adventureGame.start_
+                                </div>
+                                <button class="fix-btn" style="z-index: 10;" onclick="window.fixBugAction(event)">Run Syntax Correction</button>
                             </div>
                         </div>
-                        <div class="passive-label">Chats</div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="slide" id="slide-2" data-total-builds="3">
-            <h2 class="slide-title">Three Core Capabilities</h2>
-            <p class="text-body" style="margin-bottom: 1.5vw; text-align: center;">Three critical dimensions that completely reshape cognitive development:</p>
-            
-            <div class="icon-row">
-                <div class="skeuo-icon-unit build-item" id="slide-2-b1">
-                    <div class="skeuo-glossy-box" style="background: linear-gradient(180deg, #ffca08 0%, #ffa100 50%, #d97706 100%); border-color: #b45309;">
-                        <svg viewBox="0 0 120 120" style="width: 80px; height: 80px;">
-                            <rect x="22" y="22" width="76" height="76" rx="14" fill="#0c0d12" stroke="#e2e8f0" stroke-width="3" />
-                            <rect x="22" y="22" width="76" height="20" rx="3" fill="#1e293b" />
-                            <circle cx="32" cy="32" r="3" fill="#ff5f56" />
-                            <circle cx="42" cy="32" r="3" fill="#ffbd2e" />
-                            <circle cx="52" cy="32" r="3" fill="#27c93f" />
-                            <text x="32" y="75" fill="#f59e0b" font-family="monospace" font-size="34" font-weight="900" letter-spacing="-1">&gt;_</text>
-                        </svg>
+                <!-- SLIDE 10: HERO OUTRO -->
+                <div class="slide" id="slide-10" data-total-builds="1">
+                    <div class="layout-center" style="height: 100%;">
+                        <h1 style="font-size: 4.8vw; font-weight: 900; letter-spacing: -3px; text-shadow: 0 4px 15px rgba(0,0,0,0.95); text-align: center; line-height: 1.1;">The future is not just <br>something to watch.</h1>
+                        <h2 class="build-item" id="slide-10-b1" style="background: linear-gradient(180deg, #ffffff 30%, #cbd5e1 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 3.8vw; font-weight: 700; margin-top: 30px; text-shadow: 0 3px 10px rgba(0,0,0,0.9); text-align: center;">It is yours to write.</h2>
                     </div>
-                    <div class="icon-text-label">1. Logic Engine</div>
                 </div>
 
-                <div class="skeuo-icon-unit build-item" id="slide-2-b2">
-                    <div class="skeuo-glossy-box" style="background: linear-gradient(180deg, #5adc36 0%, #2cb617 50%, #166e0d 100%); border-color: #155e11;">
-                        <svg viewBox="0 0 120 120" style="width: 80px; height: 80px;">
-                            <path d="M45,22 C26,22 14,34 14,52 C14,70 28,82 45,82 C53,82 59,78 64,75 C67,73 71,74 74,77 C78,81 84,79 84,72 C84,52 74,22 45,22 Z" fill="#f8fafc" filter="drop-shadow(0 4px 6px rgba(0,0,0,0.45))" />
-                            <circle cx="32" cy="42" r="6" fill="#38bdf8" />
-                            <circle cx="46" cy="34" r="6" fill="#ec4899" />
-                            <circle cx="62" cy="42" r="6" fill="#eab308" />
-                            <circle cx="32" cy="62" r="8" fill="#111" />
-                            <path d="M22,86 L86,22" stroke="#854d0e" stroke-width="5" stroke-linecap="round" />
-                            <path d="M80,28 L86,22" stroke="#94a3b8" stroke-width="6" />
-                            <path d="M86,22 L89,19" stroke="#111827" stroke-width="7" stroke-linecap="round" />
-                        </svg>
-                    </div>
-                    <div class="icon-text-label">2. Creative Canvas</div>
-                </div>
-
-                <div class="skeuo-icon-unit build-item" id="slide-2-b3">
-                    <div class="skeuo-glossy-box" style="background: linear-gradient(180deg, #2b7cf4 0%, #1055c0 50%, #032a6f 100%); border-color: #03225c;">
-                        <svg viewBox="0 0 120 120" style="width: 80px; height: 80px;">
-                            <circle cx="60" cy="60" r="42" fill="#0f172a" stroke="#ffffff" stroke-width="3" />
-                            <circle cx="60" cy="60" r="38" fill="none" stroke="#334155" stroke-width="1" />
-                            <line x1="60" y1="20" x2="60" y2="28" stroke="#ffffff" stroke-width="2"/>
-                            <line x1="60" y1="92" x2="60" y2="100" stroke="#ffffff" stroke-width="2"/>
-                            <g transform="rotate(45 60 60)">
-                                <polygon points="60,22 66,60 60,56" fill="#ef4444" filter="drop-shadow(1px 2px 2px rgba(0,0,0,0.5))"/>
-                                <polygon points="60,22 54,60 60,56" fill="#fca5a5"/>
-                                <polygon points="60,98 66,60 60,64" fill="#94a3b8"/>
-                                <polygon points="60,98 54,60 60,64" fill="#cbd5e1"/>
-                                <circle cx="60" cy="60" r="4" fill="#ffffff"/>
-                            </g>
-                        </svg>
-                    </div>
-                    <div class="icon-text-label">3. Career Passport</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="slide" id="slide-3" data-total-builds="11">
-            <div class="carousel-view">
-                <div class="skeuo-glossy-box carousel-icon" id="c-icon-1" style="background: linear-gradient(180deg, #ffca08 0%, #ffa100 50%, #d97706 100%); border-color: #b45309;">
-                    <svg viewBox="0 0 120 120" style="width: 80px; height: 80px;">
-                        <rect x="22" y="22" width="76" height="76" rx="14" fill="#0c0d12" stroke="#e2e8f0" stroke-width="3" />
-                        <rect x="22" y="22" width="76" height="20" rx="3" fill="#1e293b" />
-                        <circle cx="32" cy="32" r="3" fill="#ff5f56" />
-                        <circle cx="42" cy="32" r="3" fill="#ffbd2e" />
-                        <circle cx="52" cy="32" r="3" fill="#27c93f" />
-                        <text x="32" y="75" fill="#f59e0b" font-family="monospace" font-size="34" font-weight="900" letter-spacing="-1">&gt;_</text>
+                <!-- INVISIBLE BOTTOM LEFT FULLSCREEN TOGGLE -->
+                <div class="fullscreen-trigger" onclick="window.toggleFullscreen(event)" title="Fullscreen Mode">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 8V4H8M16 4H20V8M20 16V20H16M8 20H4V16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </div>
-                <div class="skeuo-glossy-box carousel-icon" id="c-icon-2" style="background: linear-gradient(180deg, #5adc36 0%, #2cb617 50%, #166e0d 100%); border-color: #155e11;">
-                    <svg viewBox="0 0 120 120" style="width: 80px; height: 80px;">
-                        <path d="M45,22 C26,22 14,34 14,52 C14,70 28,82 45,82 C53,82 59,78 64,75 C67,73 71,74 74,77 C78,81 84,79 84,72 C84,52 74,22 45,22 Z" fill="#f8fafc" filter="drop-shadow(0 4px 6px rgba(0,0,0,0.45))" />
-                        <circle cx="32" cy="42" r="6" fill="#38bdf8" />
-                        <circle cx="46" cy="34" r="6" fill="#ec4899" />
-                        <circle cx="62" cy="42" r="6" fill="#eab308" />
-                        <circle cx="32" cy="62" r="8" fill="#111" />
-                        <path d="M22,86 L86,22" stroke="#854d0e" stroke-width="5" stroke-linecap="round" />
-                        <path d="M80,28 L86,22" stroke="#94a3b8" stroke-width="6" />
-                        <path d="M86,22 L89,19" stroke="#111827" stroke-width="7" stroke-linecap="round" />
-                    </svg>
-                </div>
-                <div class="skeuo-glossy-box carousel-icon" id="c-icon-3" style="background: linear-gradient(180deg, #2b7cf4 0%, #1055c0 50%, #032a6f 100%); border-color: #03225c;">
-                    <svg viewBox="0 0 120 120" style="width: 80px; height: 80px;">
-                        <circle cx="60" cy="60" r="42" fill="#0f172a" stroke="#ffffff" stroke-width="3" />
-                        <circle cx="60" cy="60" r="38" fill="none" stroke="#334155" stroke-width="1" />
-                        <line x1="60" y1="20" x2="60" y2="28" stroke="#ffffff" stroke-width="2"/>
-                        <line x1="60" y1="92" x2="60" y2="100" stroke="#ffffff" stroke-width="2"/>
-                        <g transform="rotate(45 60 60)">
-                            <polygon points="60,22 66,60 60,56" fill="#ef4444" filter="drop-shadow(1px 2px 2px rgba(0,0,0,0.5))"/>
-                            <polygon points="60,22 54,60 60,56" fill="#fca5a5"/>
-                            <polygon points="60,98 66,60 60,64" fill="#94a3b8"/>
-                            <polygon points="60,98 54,60 60,64" fill="#cbd5e1"/>
-                            <circle cx="60" cy="60" r="4" fill="#ffffff"/>
-                        </g>
-                    </svg>
-                </div>
-            </div>
-
-            <div class="convergence-text-area">
-                <h1 class="build-item" id="slide-3-b1" style="font-size: 2.3rem; font-weight: 700; text-shadow: 0 4px 10px rgba(0,0,0,0.9); line-height: 1.2;">A systematic logic engine...</h1>
-                <h1 class="build-item" id="slide-3-b2" style="font-size: 2.3rem; font-weight: 700; color: #4ade80; margin: 8px 0; text-shadow: 0 4px 10px rgba(0,0,0,0.9); line-height: 1.2;">A blank creative canvas...</h1>
-                <h1 class="build-item" id="slide-3-b3" style="font-size: 2.3rem; font-weight: 700; color: #60a5fa; text-shadow: 0 4px 10px rgba(0,0,0,0.9); line-height: 1.2;">A direct passport to the future...</h1>
-
-                <h2 class="build-item slide-4-reveal" id="slide-3-b10" style="font-size: 1.95rem; color: #f59e0b; font-weight: 500; margin-top: 25px; text-shadow: 0 3px 8px rgba(0,0,0,0.8);">
-                    These are not three separate subjects, they are one subject and it is called...
-                </h2>
-
-                <div class="build-item slide-4-reveal" id="slide-3-b11" style="margin-top: 15px;">
-                    <h1 style="font-size: 6rem; font-weight: 800; letter-spacing: -3px; background: linear-gradient(180deg, #ffffff 40%, #9ca3af 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 6px 12px rgba(0,0,0,0.9));">Programming.</h1>
-                </div>
+                
             </div>
         </div>
 
-        <div class="slide" id="slide-4" data-total-builds="5">
-            <h2 class="slide-title">A Cognitive Superpower</h2>
-            <div class="specs-grid-split">
-                <div class="perspective-frame">
-                    <div class="floating-angled-device">
-                        <div class="touch-display">
-                            <div style="font-family: monospace; font-size: 0.75rem; color: #a7b5cc; display: flex; flex-direction: column; gap: 4px;">
-                                <div><span style="color:#f472b6;">const</span> <span style="color:#60a5fa;">youth</span> = {</div>
-                                <div style="padding-left: 15px;">focus: <span style="color:#34d399;">"analytical"</span>,</div>
-                                <div style="padding-left: 15px;">activeCreator: <span style="color:#f59e0b;">true</span></div>
-                                <div>};</div>
-                            </div>
-                            <span style="color: #4ade80; font-size: 0.65rem; font-weight: 700; text-align: center;">SYSTEM STATUS: ACTIVE</span>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <ul class="specs-bullets-container">
-                        <li class="build-item" id="slide-4-b1">Deconstructs complex challenges</li>
-                        <li class="build-item" id="slide-4-b2">Transforms passive screen time</li>
-                        <li class="build-item" id="slide-4-b3">Accelerates spatial and logical reasoning</li>
-                        <li class="build-item" id="slide-4-b4">Builds emotional persistence</li>
-                        <li class="build-item" id="slide-4-b5">Unlocks real-world building power</li>
-                    </ul>
-                </div>
+        <!-- SPEAKER DASHBOARD DRAWER PANEL (For iPad / Presenter View only) -->
+        <div class="speaker-drawer" id="speaker-drawer">
+            <div class="speaker-header">
+                <span class="speaker-title"><i data-lucide="tablet"></i> Presenter Console</span>
+                <div class="timer-badge" id="session-timer">00:00</div>
             </div>
-        </div>
-
-        <div class="slide" id="slide-5" data-total-builds="4">
-            <h2 class="slide-title">1. The Logic Engine</h2>
-            <div class="specs-grid-split">
-                <div class="layout-center">
-                    <div class="skeuo-glossy-box" style="width: 170px; height: 170px; background: linear-gradient(180deg, #ffca08 0%, #ffa100 50%, #d97706 100%); border-color: #b45309;">
-                        <svg viewBox="0 0 120 120" style="width: 100px; height: 100px;">
-                            <rect x="25" y="25" width="70" height="70" rx="12" fill="#1e293b" stroke="#ffffff" stroke-width="2.5" />
-                            <text x="35" y="66" fill="#fbbf24" font-family="monospace" font-size="36" font-weight="bold">&gt;_</text>
-                        </svg>
-                    </div>
-                    <div class="skeuo-glossy-box skeuo-reflection" style="width: 170px; height: 170px; background: linear-gradient(180deg, #ffca08 0%, #ffa100 50%, #d97706 100%); margin-top: -20px;">
-                        <svg viewBox="0 0 120 120" style="width: 100px; height: 100px;">
-                            <rect x="25" y="25" width="70" height="70" rx="12" fill="#1e293b" />
-                        </svg>
+            <div class="speaker-content">
+                <div class="notes-section">
+                    <div class="notes-label"><i data-lucide="trending-up" style="width:14px;height:14px;"></i> Pacing Meter</div>
+                    <div class="notes-text" id="pacing-text" style="color: #a5b4fc; font-weight: 600;">Slide Target: 20s</div>
+                    <div class="pacing-bar">
+                        <div class="pacing-progress" id="pacing-progress"></div>
                     </div>
                 </div>
-                <div>
-                    <ul class="specs-bullets-container">
-                        <li class="build-item" id="slide-5-b1">Strengthens logical deduction</li>
-                        <li class="build-item" id="slide-5-b2">Trains systemic diagnostic thinking</li>
-                        <li class="build-item" id="slide-5-b3">Builds structured memory skills</li>
-                        <li class="build-item" id="slide-5-b4">Improves analytical focus under pressure</li>
-                    </ul>
+                <div class="notes-section">
+                    <div class="notes-label"><i data-lucide="sparkles" style="width:14px;height:14px;"></i> Slide Talking Points</div>
+                    <div class="notes-text" id="notes-text">Welcome your audience...</div>
                 </div>
-            </div>
-        </div>
-
-        <div class="slide" id="slide-6" data-total-builds="2">
-            <h2 class="slide-title">Cognitive Development Metrics</h2>
-            <div class="specs-grid-split">
-                <div>
-                    <p class="text-body" style="margin-bottom: 20px;">Measurable improvements in abstract problem-solving efficiency:</p>
-                    <ul class="specs-bullets-container">
-                        <li class="build-item" id="slide-6-b1"><strong>Standard textbook instruction:</strong> 1.5x score growth.</li>
-                        <li class="build-item" id="slide-6-b2"><strong>Active computer science creation:</strong> 4.1x analytical mastery.</li>
-                    </ul>
-                </div>
-                <div class="cylinder-graph-stage">
-                    <div class="cylinder-set">
-                        <div class="cylinder-wireframe">
-                            <div class="cylinder-column-bar" id="slide-6-cyl1" style="height: 0%;">
-                                <div class="cylinder-numerical" style="position: absolute; top: -30px; left: 50%; transform: translateX(-50%);">1.5x</div>
-                            </div>
-                        </div>
-                        <div class="cylinder-text-desc">Textbook Study</div>
-                    </div>
-                    <div class="cylinder-set">
-                        <div class="cylinder-wireframe">
-                            <div class="cylinder-column-bar cyl-highlight-green" id="slide-6-cyl2" style="height: 0%;">
-                                <div class="cylinder-numerical" style="position: absolute; top: -30px; left: 50%; transform: translateX(-50%);">4.1x</div>
-                            </div>
-                        </div>
-                        <div class="cylinder-text-desc">CS Building</div>
+                <div class="notes-section" style="border-color: rgba(56, 189, 248, 0.2);">
+                    <div class="notes-label" style="color: #38bdf8;"><i data-lucide="external-link" style="width:14px;height:14px;"></i> TV Sync Active</div>
+                    <div class="notes-text" style="font-size: 0.85rem; line-height:1.4;">
+                        Any updates you make here synchronize automatically on your TV screen setup.
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="slide" id="slide-7" data-total-builds="2">
-            <h2 class="slide-title">The Art of Debugging</h2>
-            <div class="specs-grid-split">
-                <div>
-                    <p class="text-body build-item" id="slide-7-b1" style="margin-bottom: 20px;">
-                        The ultimate gift of programming isn't academic.
-                    </p>
-                    <p class="text-body build-item highlight-blue" id="slide-7-b2" style="color:#8da2c4;">
-                        It redefines structural mistakes. Syntax failures are no longer permanent defeats; they are active diagnostic maps showing you exactly how to rebuild.
-                    </p>
+            <div class="speaker-actions">
+                <div class="action-row">
+                    <button class="nav-btn" onclick="window.prevSlide()"><i data-lucide="arrow-left"></i> Back</button>
+                    <button class="nav-btn primary" onclick="window.nextBuildOrSlide()">Next <i data-lucide="arrow-right"></i></button>
                 </div>
-                <div class="layout-center">
-                    <div style="background-color: #0c0d12; border-radius: 10px; padding: 20px; border: 1.5px solid #282f3c; width: 100%; max-width: 300px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 15px 30px rgba(0,0,0,0.8);">
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <span style="font-size: 0.75rem; color: #64748b; font-weight: 700; text-transform: uppercase;">Student Project</span>
-                            <span id="bug-status" style="background-color: rgba(239,68,68,0.15); color: #ef4444; font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 12px;">COMPILE: FAIL</span>
-                        </div>
-                        <div id="bug-code-line" style="font-family: monospace; font-size: 1rem; color: #f87171; border-left: 2px solid #ef4444; padding-left: 8px;">
-                            adventureGame.start_
-                        </div>
-                        <button onclick="window.fixBugAction(event)" style="background: linear-gradient(to bottom, #2563eb, #1d4ed8); border: none; color: white; padding: 10px; border-radius: 5px; font-weight: 600; cursor: pointer;">Fix Syntax</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="slide" id="slide-8" data-total-builds="1">
-            <div class="layout-center" style="height: 100%;">
-                <h1 style="font-size: 4.4rem; font-weight: 700; letter-spacing: -2px; text-shadow: 0 4px 10px rgba(0,0,0,0.85); text-align: center;">The future is not just <br>something to consume.</h1>
-                <h2 class="build-item" id="slide-8-b1" style="background: linear-gradient(180deg, #8da2c4 30%, #475569 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 3.8rem; font-weight: 600; margin-top: 30px; text-shadow: 0 3px 6px rgba(0,0,0,0.85); text-align: center;">It is yours to write.</h2>
+                <button class="nav-btn" style="border-color: rgba(239, 68, 68, 0.2); color:#f87171;" onclick="window.resetPresentation()"><i data-lucide="rotate-ccw"></i> Reset Session</button>
+                <button class="nav-btn" style="background: rgba(99, 102, 241, 0.1); border-color: rgba(99, 102, 241, 0.3);" onclick="window.launchTVWindow()"><i data-lucide="tv"></i> Launch TV Display</button>
             </div>
         </div>
 
     </div>
 
+    <button class="companion-toggle" id="companion-toggle-button" onclick="window.toggleCompanion(event)">Hide Notes</button>
+
     <script>
+        // BROADCAST ENGINE - Syncs state seamlessly across iPad (presenter) and TV (receiver)
+        let broadcastChannel = null;
+        try {
+            broadcastChannel = new BroadcastChannel('presentation_sync_channel');
+        } catch (e) {
+            console.warn("BroadcastChannel not supported in this frame, falling back to storage sync.");
+        }
+
         const state = {
             currentSlide: 0,
             currentBuild: 0,
-            totalSlides: 9
+            totalSlides: 11,
+            startTime: null,
+            timerInterval: null,
+            pacingInterval: null,
+            slideElapsed: 0,
+            isProjector: false // True if URL has ?display=tv (e.g. TV mode)
         };
 
+        const speakerNotes = {
+            0: {
+                target: 20,
+                notes: "Dramatic Hook. Open with strength. Let the clean, glowing glassmorphic elements build gravity. Speak with clarity.",
+                cue: "Tap Next to reveal the revolutionary skill hook phrase."
+            },
+            1: {
+                target: 35,
+                notes: "Concept 1: The Logic Engine. Reframe as high-level plan decomposition. Reframe with recipe / instructions paradigm.",
+                cue: "Build all bullet targets slowly while keeping speech flow smooth."
+            },
+            2: {
+                target: 35,
+                notes: "Concept 2: The Creative Canvas. Introduce active creation versus passive navigation. Emphasize art, arcade physics, and custom app building.",
+                cue: "Bring on targets. Establish structural agency."
+            },
+            3: {
+                target: 35,
+                notes: "Concept 3: The Career Passport. Explain digital literacy globally. Connect software execution skills directly to all future market sectors.",
+                cue: "Reiterate borderless market security."
+            },
+            4: {
+                target: 45,
+                notes: "The Convergence Reveal. Proclaim sequentially: '1. Step-by-step thinking...', '2. Building your own ideas...', '3. A passport to the future...' Witness the orbital icons seamlessly fuse together to reveal the word: PROGRAMMING.",
+                cue: "Build 1, 2, and 3. Then fire builds 10 and 11 to execute the high-gloss merge animation!"
+            },
+            5: {
+                target: 25,
+                notes: "Establish Formal Definition. Emphasize moving from simple user habits to systemic digital architect capacity.",
+                cue: "Keep notes clear and authoritative."
+            },
+            6: {
+                target: 30,
+                notes: "Focus on screen-time traps. Most youth scroll or watch streams for 7+ hours, completely locked out of software control.",
+                cue: "Observe passive mock elements. Highlight lack of interaction."
+            },
+            7: {
+                target: 35,
+                notes: "Introduce Actionable Solutions. Emphasize shifting screen parameters into building hours.",
+                cue: "Examine floating active screen parameters."
+            },
+            8: {
+                target: 35,
+                notes: "Analyze educational statistics. Highlight that learning is boosted 2.7x via active project development compared to static reading.",
+                cue: "Animate graph cylinders. Direct audience visual reference."
+            },
+            9: {
+                target: 40,
+                notes: "Introduce systemic resilience. Explain syntax errors as logical directions rather than final deadlocks. Run syntax corrections on terminal widget.",
+                cue: "Click button to execute the code and let compile ring sound confirm successful output."
+            },
+            10: {
+                target: 20,
+                notes: "Deliver final inspiring sentence. 'The future is not just something to watch—it is yours to write.' Secure focus, invite audience praise.",
+                cue: "Reveal the final line."
+            }
+        };
+
+        // CANVAS BACKGROUND PARTICLES ENGINE
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let mouse = { x: null, y: null };
+
+        function resizeCanvas() {
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = Math.random() * 0.3 - 0.15;
+                this.speedY = Math.random() * -0.3 - 0.1; // Gentle upper drift
+                this.alpha = Math.random() * 0.5 + 0.2;
+                this.glowRate = Math.random() * 0.005 + 0.002;
+                this.fading = Math.random() > 0.5;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.y < 0) {
+                    this.y = canvas.height;
+                    this.x = Math.random() * canvas.width;
+                }
+
+                if (this.fading) {
+                    this.alpha -= this.glowRate;
+                    if (this.alpha <= 0.15) this.fading = false;
+                } else {
+                    this.alpha += this.glowRate;
+                    if (this.alpha >= 0.8) this.fading = true;
+                }
+
+                if (mouse.x && mouse.y) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 120) {
+                        let force = (120 - dist) / 120;
+                        this.x -= dx * force * 0.03;
+                        this.y -= dy * force * 0.03;
+                    }
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = '#ffffff';
+                ctx.shadowBlur = 6;
+                ctx.shadowColor = '#ffffff';
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            const count = Math.floor((canvas.width * canvas.height) / 14000);
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+
+        // DUAL-SCREEN BROADCAST TRANSMISSION
+        function sendSyncBroadcast() {
+            const data = {
+                type: 'SYNC_STATE',
+                currentSlide: state.currentSlide,
+                currentBuild: state.currentBuild
+            };
+            if (broadcastChannel) {
+                broadcastChannel.postMessage(data);
+            }
+            localStorage.setItem('presentation_sync', JSON.stringify({
+                ...data,
+                timestamp: Date.now()
+            }));
+        }
+
+        // RECEIVE BROADCAST TRANSITIONS
+        function handleSyncMessage(data) {
+            if (data && data.type === 'SYNC_STATE') {
+                state.currentSlide = data.currentSlide;
+                state.currentBuild = data.currentBuild;
+                updatePresentationUI(false); // Update local layout
+            }
+        }
+
+        // NEXT SLIDE / BUILD SEQUENCE
         function nextBuildOrSlide(event) {
             if (event) event.stopPropagation();
 
@@ -930,16 +1325,17 @@
 
             if (state.currentBuild < totalBuilds) {
                 state.currentBuild++;
-                updatePresentationUI();
+                updatePresentationUI(true);
             } else {
                 if (state.currentSlide < state.totalSlides - 1) {
                     state.currentSlide++;
                     state.currentBuild = 0;
-                    updatePresentationUI();
+                    updatePresentationUI(true);
                 }
             }
         }
 
+        // PREVIOUS SLIDE SEQUENCE
         function prevSlide(event) {
             if (event) event.stopPropagation();
 
@@ -947,10 +1343,11 @@
                 state.currentSlide--;
                 const prevSlideEl = document.getElementById(`slide-${state.currentSlide}`);
                 state.currentBuild = parseInt(prevSlideEl.getAttribute('data-total-builds') || '0');
-                updatePresentationUI();
+                updatePresentationUI(true);
             }
         }
 
+        // RESET PRESENTATION
         function resetPresentation(event) {
             if (event) event.stopPropagation();
             state.currentSlide = 0;
@@ -967,13 +1364,14 @@
                 codeLine.textContent = 'adventureGame.start_';
             }
 
-            updatePresentationUI();
+            updatePresentationUI(true);
         }
 
         function onStageClick() {
             nextBuildOrSlide();
         }
 
+        // ORBIT CAROUSEL POSITION CALCULATOR
         function renderCarouselPositions() {
             const orbit1 = document.getElementById('c-icon-1');
             const orbit2 = document.getElementById('c-icon-2');
@@ -1033,20 +1431,46 @@
             }
         }
 
-        function fixBugAction(event) {
-            event.stopPropagation();
-            const bugStatus = document.getElementById('bug-status');
-            const codeLine = document.getElementById('bug-code-line');
+        // FULLSCREEN WEB VIEWPORT
+        function toggleFullscreen(event) {
+            if (event) event.stopPropagation();
+            const element = document.getElementById('stage');
+            if (!document.fullscreenElement) {
+                if (element.requestFullscreen) {
+                    element.requestFullscreen();
+                } else if (element.webkitRequestFullscreen) {
+                    element.webkitRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
 
-            bugStatus.style.backgroundColor = 'rgba(34, 197, 94, 0.2)';
-            bugStatus.style.color = '#22c55e';
-            bugStatus.textContent = 'COMPILE: OK';
+        // PRESENTATION NOTES DASHBOARD DRAWER TOGGLE
+        function toggleCompanion(event) {
+            if (event) event.stopPropagation();
+            const drawer = document.getElementById('speaker-drawer');
+            const toggleBtn = document.getElementById('companion-toggle-button');
+            
+            if (drawer.style.display === 'none') {
+                drawer.style.display = 'flex';
+                toggleBtn.textContent = 'Hide Notes';
+            } else {
+                drawer.style.display = 'none';
+                toggleBtn.textContent = 'Show Notes';
+            }
+            initAudioEngine();
+            triggerSyntheticSfx(440, 0.05);
+        }
 
-            codeLine.style.color = '#34d399';
-            codeLine.style.borderLeftColor = '#22c55e';
-            codeLine.textContent = 'adventureGame.start();';
-
-            triggerSyntheticSfx(580, 0.08);
+        // LAUNCH TV WINDOW POPUP
+        function launchTVWindow() {
+            const path = window.location.pathname;
+            const origin = window.location.origin;
+            const fullURL = `${origin}${path}?display=tv`;
+            window.open(fullURL, 'fuller_presentation_tv', 'width=1280,height=720');
         }
 
         window.onStageClick = onStageClick;
@@ -1054,9 +1478,43 @@
         window.nextBuildOrSlide = nextBuildOrSlide;
         window.resetPresentation = resetPresentation;
         window.fixBugAction = fixBugAction;
+        window.toggleFullscreen = toggleFullscreen;
+        window.toggleCompanion = toggleCompanion;
+        window.launchTVWindow = launchTVWindow;
 
         window.onload = function() {
-            updatePresentationUI();
+            // DETECT TV OR IPAD SYSTEM PARAMETERS
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('display') === 'tv') {
+                state.isProjector = true;
+                document.body.classList.add('projector-mode');
+                document.getElementById('speaker-drawer').style.display = 'none';
+                document.getElementById('companion-toggle-button').style.display = 'none';
+            }
+
+            // Sync Receivers
+            if (broadcastChannel) {
+                broadcastChannel.onmessage = (event) => handleSyncMessage(event.data);
+            }
+            window.addEventListener('storage', (event) => {
+                if (event.key === 'presentation_sync') {
+                    try {
+                        const parsed = JSON.parse(event.newValue);
+                        handleSyncMessage(parsed);
+                    } catch (e) {}
+                }
+            });
+
+            lucide.createIcons();
+            
+            resizeCanvas();
+            initParticles();
+            animateParticles();
+            
+            state.startTime = Date.now();
+            startPresentationTimers();
+
+            updatePresentationUI(false);
             
             document.addEventListener('keydown', function(event) {
                 if (event.code === 'Space' || event.code === 'ArrowRight') {
@@ -1065,17 +1523,78 @@
                 } else if (event.code === 'ArrowLeft') {
                     event.preventDefault();
                     prevSlide();
+                } else if (event.code === 'Escape') {
+                    event.preventDefault();
+                    resetPresentation();
                 }
+            });
+
+            window.addEventListener('resize', () => {
+                resizeCanvas();
+                initParticles();
+            });
+
+            const stage = document.getElementById('stage');
+            stage.addEventListener('mousemove', (e) => {
+                const rect = stage.getBoundingClientRect();
+                mouse.x = e.clientX - rect.left;
+                mouse.y = e.clientY - rect.top;
+            });
+
+            stage.addEventListener('mouseleave', () => {
+                mouse.x = null;
+                mouse.y = null;
             });
         };
 
-        function updatePresentationUI() {
+        function startPresentationTimers() {
+            state.timerInterval = setInterval(() => {
+                const totalSec = Math.floor((Date.now() - state.startTime) / 1000);
+                const min = String(Math.floor(totalSec / 60)).padStart(2, '0');
+                const sec = String(totalSec % 60).padStart(2, '0');
+                const clock = document.getElementById('session-timer');
+                if (clock) clock.textContent = `${min}:${sec}`;
+            }, 1000);
+
+            state.pacingInterval = setInterval(() => {
+                state.slideElapsed++;
+                const notes = speakerNotes[state.currentSlide];
+                if (notes) {
+                    const progress = Math.min((state.slideElapsed / notes.target) * 100, 100);
+                    const progressBar = document.getElementById('pacing-progress');
+                    if (progressBar) {
+                        progressBar.style.width = `${progress}%`;
+                        if (progress >= 100) {
+                            progressBar.style.backgroundColor = '#f87171';
+                        } else {
+                            progressBar.style.backgroundColor = '#818cf8';
+                        }
+                    }
+                }
+            }, 1000);
+        }
+
+        // MASTER UI CONTROLLER & SYNC DISPATCH
+        function updatePresentationUI(shouldSync = true) {
+            // Update slide states
             for (let i = 0; i < state.totalSlides; i++) {
                 const slideEl = document.getElementById(`slide-${i}`);
                 if (i === state.currentSlide) {
                     slideEl.classList.add('active');
                 } else {
                     slideEl.classList.remove('active');
+                }
+            }
+
+            // Sync Gradient backdrops matching state slide transitions
+            for (let i = 0; i < state.totalSlides; i++) {
+                const layer = document.getElementById(`bg-layer-${i}`);
+                if (layer) {
+                    if (i === state.currentSlide) {
+                        layer.classList.add('active');
+                    } else {
+                        layer.classList.remove('active');
+                    }
                 }
             }
 
@@ -1093,35 +1612,44 @@
                 }
             }
 
-            const spotlight = document.getElementById('intro-spotlight');
-            if (state.currentSlide === 0) {
-                if (state.currentBuild >= 1) {
-                    spotlight.classList.add('active');
-                } else {
-                    spotlight.classList.remove('active');
-                }
-            }
-
-            if (state.currentSlide === 3) {
+            if (state.currentSlide === 4) {
                 renderCarouselPositions();
             }
 
-            const cyl1 = document.getElementById('slide-6-cyl1');
-            const cyl2 = document.getElementById('slide-6-cyl2');
+            const cyl1 = document.getElementById('slide-8-cyl1');
+            const cyl2 = document.getElementById('slide-8-cyl2');
             if (cyl1 && cyl2) {
-                if (state.currentSlide === 6 && state.currentBuild >= 1) {
+                if (state.currentSlide === 8 && state.currentBuild >= 1) {
                     cyl1.style.height = '36%';
                 } else {
                     cyl1.style.height = '0%';
                 }
-                if (state.currentSlide === 6 && state.currentBuild >= 2) {
+                if (state.currentSlide === 8 && state.currentBuild >= 2) {
                     cyl2.style.height = '95%';
                 } else {
                     cyl2.style.height = '0%';
                 }
             }
 
+            // Sync Notes inside ipad view presenter drawers
+            state.slideElapsed = 0;
+            const companionNotes = speakerNotes[state.currentSlide];
+            if (companionNotes) {
+                const pacingText = document.getElementById('pacing-text');
+                const notesText = document.getElementById('notes-text');
+                if (pacingText) pacingText.innerHTML = `Slide Target: <span style="font-size:1.1rem; color:#ffffff;">${companionNotes.target}s</span>`;
+                if (notesText) notesText.textContent = companionNotes.notes;
+            }
+
+            // Refresh Lucide dynamically rendered builds
+            lucide.createIcons();
+
             triggerSlideSfx();
+
+            // Broadcaster call
+            if (shouldSync) {
+                sendSyncBroadcast();
+            }
         }
 
         let audioCtx = null;
@@ -1162,3 +1690,5 @@
     </script>
 </body>
 </html>
+
+```
